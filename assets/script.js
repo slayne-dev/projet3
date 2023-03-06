@@ -28,9 +28,11 @@ buttonRight.addEventListener("click", function () {
 	console.log ("cliqué ! D")
 });
 
-
-
+let allDots = document.querySelector(".dots");
+//Une boucle pour créer les dots
 for (var i=0; i < slides.length; i++) {
-	let allDots = document.querySelector(".dots");
 	
+	let oneDots = document.createElement("div");
+	oneDots.className = "dot";
+	allDots.appendChild(oneDots);
 }
