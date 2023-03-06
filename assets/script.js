@@ -17,12 +17,20 @@ const slides = [
 	}
 ]
 
+//event listeners sur les flèches
 const buttonLeft = document.querySelector (".arrow_left");
-buttonLeft.addEventListener("click",
-	console.log ("touché!")
-);
+buttonLeft.addEventListener("click", function () {
+	console.log ("cliqué ! G")
+});
 
 const buttonRight = document.querySelector (".arrow_right");
 buttonRight.addEventListener("click", function () {
-
+	console.log ("cliqué ! D")
 });
+
+
+
+for (var i=0; i < slides.length; i++) {
+	let allDots = document.querySelector(".dots");
+	
+}
