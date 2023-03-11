@@ -1,3 +1,4 @@
+"use_strict"
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -17,22 +18,67 @@ const slides = [
 	}
 ]
 
+nbSlides = slides.length;
+
+//On crée un compteur à 0
+let count = 0;
+
+        // PARTIE DOTS
+
+// Une boucle pour créer des dots en fct du nombre d'objets dans le tableau slide 
+// alternative : for (let i=0; i < slides.length; i++)
+for (let slide of slides) {
+	let allDots = document.querySelector(".dots");
+	let dot = document.createElement("div");
+	dot.className = "dot";
+	allDots.appendChild(dot);
+}
+
+//On crée un tableau avec toutes les divs "dot" construites précédemment
+let dots = document.querySelectorAll (".dot");
+let dotsArray = Array.from(dots);
+
+//Rendre la première dot active
+let dotSelected = dotsArray[count];
+dotSelected.className = "dot dot_selected";
+
+
+
 //event listeners sur les flèches
 const buttonLeft = document.querySelector (".arrow_left");
-buttonLeft.addEventListener("click", function () {
-	console.log ("cliqué ! G")
-});
+buttonLeft.addEventListener("click", previous);
 
 const buttonRight = document.querySelector (".arrow_right");
-buttonRight.addEventListener("click", function () {
-	console.log ("cliqué ! D")
-});
+buttonRight.addEventListener("click", next);
 
-let allDots = document.querySelector(".dots");
-//Une boucle pour créer les dots
-for (var i=0; i < slides.length; i++) {
+function next (){
+	if(count < nbSlides - 1){
+		count++;
+	} else{
+		count = 0;
+	};
+	console.log(count);
 	
-	let oneDots = document.createElement("div");
-	oneDots.className = "dot";
-	allDots.appendChild(oneDots);
+	//On change le bullet point actif
+	dotSelected.className = "dot";
+	dotSelected = dotsArray[count];
+	dotSelected.className = "dot dot_selected";
 }
+
+function previous (){
+	if(count > 0){
+		count--;
+	} else{
+		count = nbSlides - 1;
+	};
+	console.log(count);
+
+	//On change le bullet point actif
+	dotSelected.className = "dot";
+	dotSelected = dotsArray[count];
+	dotSelected.className = "dot dot_selected";
+}
+
+
+
+
