@@ -1,4 +1,4 @@
-"use_strict"
+
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -20,13 +20,23 @@ const slides = [
 
 nbSlides = slides.length;
 
-//On crée un compteur à 0
+   		// CREATION D'UN COMPTEUR A 0
+
 let count = 0;
+
+		// PARTIE IMAGE ET TEXTE
+
+let text = document.querySelector("#banner p");
+text.innerHTML = slides[count].tagLine;
+
+let image = document.querySelector(".banner-img");
+image.setAttribute("src", `./assets/images/slideshow/${slides[count].image}`);
+/* alternative : image.src = `./assets/images/slideshow/${slides[count].image}`; */
 
         // PARTIE DOTS
 
-// Une boucle pour créer des dots en fct du nombre d'objets dans le tableau slide 
-// alternative : for (let i=0; i < slides.length; i++)
+// Boucle pour créer des dots en fct du nombre d'objets dans le tableau slide 
+
 for (let slide of slides) {
 	let allDots = document.querySelector(".dots");
 	let dot = document.createElement("div");
@@ -34,51 +44,72 @@ for (let slide of slides) {
 	allDots.appendChild(dot);
 }
 
-//On crée un tableau avec toutes les divs "dot" construites précédemment
+// On crée un tableau avec toutes les divs "dot" construites précédemment
+
 let dots = document.querySelectorAll (".dot");
 let dotsArray = Array.from(dots);
 
-//Rendre la première dot active
+// Rendre la première dot active
+
 let dotSelected = dotsArray[count];
 dotSelected.className = "dot dot_selected";
 
 
-
-//event listeners sur les flèches
-const buttonLeft = document.querySelector (".arrow_left");
-buttonLeft.addEventListener("click", previous);
+		// EVENT LISTENERS SUR LES FLECHES
 
 const buttonRight = document.querySelector (".arrow_right");
 buttonRight.addEventListener("click", next);
 
+const buttonLeft = document.querySelector (".arrow_left");
+buttonLeft.addEventListener("click", previous);
+
+		// LES FONCTIONS ACTIVEES AU CLIC SUR LES FLECHES
+
 function next (){
+
+	// Cliquer monte le compteur mais reste dans le cadre du tableau
+
 	if(count < nbSlides - 1){
 		count++;
 	} else{
 		count = 0;
 	};
-	console.log(count);
+
+	// Modification du texte et de l'image
 	
-	//On change le bullet point actif
+	text.innerHTML = slides[count].tagLine;
+	image.setAttribute("src", `./assets/images/slideshow/${slides[count].image}`);
+	
+	// Modification de la dot active
+
 	dotSelected.className = "dot";
 	dotSelected = dotsArray[count];
 	dotSelected.className = "dot dot_selected";
+
 }
 
 function previous (){
+
+	// Cliquer baisse le compteur mais reste dans le cadre des tableaux
+
 	if(count > 0){
 		count--;
 	} else{
 		count = nbSlides - 1;
 	};
-	console.log(count);
 
-	//On change le bullet point actif
+	// Modification du texte et de l'image
+
+	text.innerHTML = slides[count].tagLine;
+	image.setAttribute("src", `./assets/images/slideshow/${slides[count].image}`);
+
+	// Modification de la dot active
+
 	dotSelected.className = "dot";
 	dotSelected = dotsArray[count];
 	dotSelected.className = "dot dot_selected";
+	
 }
-
 
 
 
