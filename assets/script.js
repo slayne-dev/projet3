@@ -1,4 +1,4 @@
-
+"use strict";
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -18,7 +18,7 @@ const slides = [
 	}
 ]
 
-nbSlides = slides.length;
+ let nbSlides = slides.length;
 
    		// CREATION D'UN COMPTEUR A 0
 
@@ -37,12 +37,23 @@ image.setAttribute("src", `./assets/images/slideshow/${slides[count].image}`);
 
 // Boucle pour créer des dots en fct du nombre d'objets dans le tableau slide 
 
-for (let slide of slides) {
+/*for (let slide of slides) {
 	let allDots = document.querySelector(".dots");
 	let dot = document.createElement("div");
 	dot.className = "dot";
 	allDots.appendChild(dot);
-}
+}*/
+
+let allDots = document.querySelector(".dots");
+let dot = document.createElement("div");
+	dot.className = "dot";
+	allDots.appendChild(dot);
+
+dot.forEach((element, cle) => {
+	console.log(element, cle);
+	cle === count ? element.classList.add("dotSelected") : element.classList.remove("dotSelected");
+});
+
 
 // On crée un tableau avec toutes les divs "dot" construites précédemment
 
@@ -69,11 +80,14 @@ function next (){
 
 	// Cliquer monte le compteur mais reste dans le cadre du tableau
 
-	if(count < nbSlides - 1){
+	/*if(count < nbSlides - 1){
 		count++;
 	} else{
 		count = 0;
 	};
+	console.log(count);*/
+
+	count < nbSlides - 1 ? count++ : count = 0 ;
 
 	// Modification du texte et de l'image
 	
